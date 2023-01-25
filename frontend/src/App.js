@@ -1,6 +1,6 @@
 import React from 'react'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
-
+import AddDiscussionPage from './pages/addDiscussionPage/AddDiscussionPage'
 import Nav from './components/nav/Nav'
 import HomePage from './pages/homePage/HomePage'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -25,9 +25,9 @@ function App() {
                     <Nav />
                     <Routes>
                         <Route exact path='/' element={<HomePage />} />
-                        
-                        <Route path='/discussions/:id' element={<DetailDiscussionPage/>}/>
 
+                        <Route path='/discussions/:id' element={<DetailDiscussionPage />} />
+                        <Route path='/discussions/addNew' element={<AddDiscussionPage />} />
                     </Routes>
                 </Router>
             </ChakraProvider>

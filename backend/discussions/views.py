@@ -1,33 +1,28 @@
 from rest_framework import generics, filters
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import Topic, Discussion
 from .serializers import DiscussionSerializer, TopicSerializer
+from django.contrib.auth.models import User
+
 
 
 class ListTopic(generics.ListAPIView):
-    #permission_classes = [IsAuthenticatedOrReadOnly]
+
     queryset = Topic.objects.all()
     serializer_class = TopicSerializer
     
 class DetailTopic(generics.RetrieveAPIView):
-    
-   # permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Topic.objects.all()
     serializer_class = TopicSerializer
 
 
-class ListDiscussion(generics.ListAPIView):
+    
+class ListDiscussion(generics.ListCreateAPIView):
     search_fields = ['title']
     filter_backends = (filters.SearchFilter,)
-    #permission_classes = [IsAuthenticatedOrReadOnly]
-    queryset = Discussion.objects.all()
+    queryset = Discussion.objects.all().order_by('-created_at')
     serializer_class = DiscussionSerializer
 
 
-class DetailDiscussion(generics.RetrieveAPIView):
-
-   # permission_classes = [IsAuthenticatedOrReadOnly]
+class DetailDiscussion(generics.RetrieveUpdateDestroyAPIView):
     queryset = Discussion.objects.all()
     serializer_class = DiscussionSerializer
-    
-
