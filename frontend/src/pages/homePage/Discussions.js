@@ -1,9 +1,9 @@
 import { Flex, Text, Image } from '@chakra-ui/react'
 import axios from 'axios'
-import { useQuery } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import Moment from 'react-moment'
 import { useEffect, useState } from 'react'
+import styled from 'styled-components'
 export default function Discussions() {
     const navigate = useNavigate()
 
@@ -43,12 +43,13 @@ export default function Discussions() {
                                 </Text>
 
                                 <Flex flexDirection={'column'} width={'90%'}>
-                                    <Flex fontSize={10}>
+                                    <Flex fontSize={10} styl>
                                         <Text>Posted &nbsp;</Text>
                                         <Moment fromNow>{discussion.created_at}</Moment>
                                     </Flex>
 
                                     <Text>{discussion.title}</Text>
+                                   <Hello>Hello</Hello>
                                 </Flex>
                             </Flex>
                         </Flex>
@@ -57,3 +58,8 @@ export default function Discussions() {
         </Flex>
     )
 }
+
+
+const Hello = styled.div({
+    backgroundColor: '#2b2b',
+})
